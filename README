@@ -35,4 +35,4 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 cd C:\OpenServer\domains\skyeng
 C:\OpenServer\modules\php\PHP-5.4.11\php.exe -c "C:\OpenServer\userdata\temp\config\php.ini" -S localhost:8000
 
-
+ 
