@@ -1,4 +1,4 @@
-<?php
+п»ї<?php
 
 /**
  * This is the model class for table "learner".
@@ -176,7 +176,7 @@ class Learner extends CActiveRecord
 	}
 	public function ProcessLink( $teacher , $learner , $to )
 	{
-		// проверить что есть
+		// РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ РµСЃС‚СЊ
 		$sql = "SELECT COUNT(*) FROM l_t WHERE teacher_id=$teacher AND learner_id=$learner";
 		$res = Yii::app()->db->createCommand( $sql )->queryScalar();
 		Yii::log("ProcessLink teacher=[$teacher],learner=[$learner],to=[$to],res=[$res]","warning");
@@ -184,12 +184,12 @@ class Learner extends CActiveRecord
 		{
 			if ( false !== $res && 0 == $res )
 			{
-				// добавить если нет
+				// РґРѕР±Р°РІРёС‚СЊ РµСЃР»Рё РЅРµС‚
 				$arr_insert = array( 'teacher_id' => $teacher , 'learner_id' => $learner );
 				Yii::app()->db->createCommand()->insert( 'l_t' , $arr_insert );
 			}
 		} else if ( 'unset' == $to ) {
-			// удалить
+			// СѓРґР°Р»РёС‚СЊ
 			if ( $res )
 			{
 				$sql = "DELETE FROM l_t WHERE teacher_id=$teacher AND learner_id=$learner LIMIT 1";
