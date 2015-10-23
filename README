@@ -1,1 +1,38 @@
-﻿Инструкуция по развертыванию
+﻿Инструкция по развертыванию
+
+1. Настройки данных БД находятся в protected\config\database.php
+
+2. Создание таблиц :
+
+CREATE TABLE IF NOT EXISTS `learner` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT 'Имя',
+  `email` varchar(100) NOT NULL COMMENT 'email',
+  `birthdate` date NOT NULL COMMENT 'день рожденья',
+  `level` enum('A1','A2','B1','B2','C1','C2') NOT NULL COMMENT 'уровень знания языка',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Ученики';
+
+CREATE TABLE IF NOT EXISTS `l_t` (
+  `teacher_id` int(10) NOT NULL,
+  `learner_id` int(10) NOT NULL,
+  UNIQUE KEY `teacher_id` (`teacher_id`,`learner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Связь учителей и учеников';
+
+CREATE TABLE IF NOT EXISTS `teacher` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT 'Имя',
+  `gender` enum('male','female') NOT NULL DEFAULT 'male' COMMENT 'Пол',
+  `phone` varchar(100) NOT NULL COMMENT 'телефон',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Учителя' ;
+
+3. Запуск в встроенном сервере PHP
+
+Запуск для windows OpenServer :
+cd C:\OpenServer\domains\skyeng
+C:\OpenServer\modules\php\PHP-5.4.11\php.exe -c "C:\OpenServer\userdata\temp\config\php.ini" -S localhost:8000
+
+

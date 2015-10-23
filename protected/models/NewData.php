@@ -6,12 +6,12 @@ class NewData {
 	 */
 	static public function CreateNewData()
 	{
-		// очистка всех таблиц
+		// РѕС‡РёСЃС‚РєР° РІСЃРµС… С‚Р°Р±Р»РёС†
 		Yii::app()->db->createCommand( "TRUNCATE TABLE l_t" )->execute();
 		Yii::app()->db->createCommand( "TRUNCATE TABLE teacher" )->execute();
 		Yii::app()->db->createCommand( "TRUNCATE TABLE learner" )->execute();
 		
-		// наполнение teacher 10k
+		// РЅР°РїРѕР»РЅРµРЅРёРµ teacher 10k
 		// name gender phone
 		$i = 0;
 		$j = 0;
@@ -22,7 +22,7 @@ class NewData {
 				break;
 			}
 			$name = static::GenerateName();
-			// проверить что такого имени нет
+			// РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ С‚Р°РєРѕРіРѕ РёРјРµРЅРё РЅРµС‚
 			$sql = "SELECT COUNT(*) FROM teacher WHERE name='$name'";
 			$res = Yii::app()->db->createCommand( $sql )->queryScalar();
 			if ( false !== $res && 0 == $res )
@@ -44,7 +44,7 @@ class NewData {
 			++$i;
 		} while( $i < 10000 );
 		
-		// наполнение learner 100k
+		// РЅР°РїРѕР»РЅРµРЅРёРµ learner 100k
 		// name email birthdate level
 		$i = 0;
 		$j = 0;
@@ -55,7 +55,7 @@ class NewData {
 				break;
 			}
 			$name = static::GenerateName();
-			// проверить что такого имени нет
+			// РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ С‚Р°РєРѕРіРѕ РёРјРµРЅРё РЅРµС‚
 			$sql = "SELECT COUNT(*) FROM learner WHERE name='$name'";
 			$res = Yii::app()->db->createCommand( $sql )->queryScalar();
 			if ( false !== $res && 0 == $res )
@@ -96,7 +96,7 @@ class NewData {
 		$ret = "";
 		for ($i = 0; $i < $length; ++$i )
 		{
-			$ret .= chr(mt_rand(97, 122)); // 97 - это a, а 122 - это z
+			$ret .= chr(mt_rand(97, 122)); // 97 - СЌС‚Рѕ a, Р° 122 - СЌС‚Рѕ z
 		}
 		return $ret;
 	}
